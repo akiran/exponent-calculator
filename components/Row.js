@@ -3,23 +3,23 @@ import {
   StyleSheet,
   View
 } from 'react-native'
-import KeyPad from './KeyPad'
-import Result from './Result'
 
-export default class Calculator extends React.Component {
+
+export default class Row extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Result value={''}/>
-        <KeyPad />
+        {this.props.children}
       </View>
     )
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row'
   }
 })
 

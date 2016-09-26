@@ -1,21 +1,21 @@
 import React from 'react'
 import {
   StyleSheet,
-  View
+  View,
+  Text
 } from 'react-native'
-import KeyPad from './KeyPad'
-import Result from './Result'
 
-export default class Calculator extends React.Component {
+
+export default class Result extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Result value={''}/>
-        <KeyPad />
+        <Text>{this.props.value}</Text>
       </View>
     )
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
