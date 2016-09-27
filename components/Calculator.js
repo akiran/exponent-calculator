@@ -10,49 +10,71 @@ export default class Calculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      previousInput: '',
+      prevInput: 0,
+      input: 0,
       operator: '',
-      input: ''
+      action: ''
     }
-    this.addInput = this.addInput.bind(this)
-    this.setOperator = this.setOperator.bind(this)
-    this.calculateResult = this.calculateResult.bind(this)
+    this.handleInput = this.handleInput.bind(this)
     this.clear = this.clear.bind(this)
   }
-  addInput(key) {
+  handleNumber(key) {
+    const {input, action} = this.state
     this.setState({
-      input: this.state.input.concat(key)
+      input: action === 'number' ? input*10 + key : key,
+      action: 'number'
     })
   }
-  setOperator(operator) {
-    this.setState({operator})
+  handleOperand(key) {
+    let {prevInput, input, operator} = this.state
+    this.setState({
+      operator: key,
+      prevInput: input,
+      action: 'operand'
+    })
   }
   calculateResult() {
-    const {previousInput, input, operator} = this.state
+    let {prevInput, input, operator, action} = this.state
+    if (!operator) {
+      return
+    }
+    
     this.setState({
-      input: eval(`${previousInput} ${operator} ${input}`),
-      previousInput: input
+      prevInput: action === 'result' ? prevInput : input,
+      input: eval(`${prevInput} ${operator} ${input}`),
+      action: 'result'
     })
+  }
+  handleInput(key) {
+    if (typeof key === 'number') {
+      this.handleNumber(key)
+    } else if (key === '=') {
+      this.calculateResult()
+    } else {
+      this.handleOperand(key)
+    }
   }
   clear() {
     this.setState({
-      previousInput: '',
+      prevInput: 0,
       operator: '',
-      input: ''
+      input: 0
     })
   }
   render() {
-    const {input,  previousInput, operator} = this.state
-    const dirty = input || previousInput || operator
-    console.log('dirty', input)
+    const {input,  prevInput, operator} = this.state
+    const dirty = input || prevInput || operator
+    console.log('state', this.state)
     return (
       <View style={styles.container}>
         <Result 
-          value={input} />
+          value={input} 
+        />
         <KeyPad 
-          addInput={this.addInput}
+          handleInput={this.handleInput}
           clear={this.clear}
-          dirty={dirty} />
+          dirty={dirty} 
+        />
       </View>
     )
   }

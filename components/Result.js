@@ -10,7 +10,7 @@ export default class Result extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.value}</Text>
+        <Text style={styles.resultText}>{this.props.value}</Text>
       </View>
     )
   }
@@ -19,7 +19,14 @@ export default class Result extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#000',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
+  },
+  resultText: {
+    color: '#FFF',
+    fontSize: 34
   }
 })
 

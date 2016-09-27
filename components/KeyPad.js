@@ -9,38 +9,38 @@ import Row from './Row'
 
 export default class KeyPad extends React.Component {
   render() {
-    const {dirty, clear, addInput} = this.props
+    const {dirty, clear, handleInput} = this.props
     return (
       <View style={styles.container}>
         <Row>
           <GrayButton onPress={clear}>{dirty ? 'C': 'AC'}</GrayButton>
-          <GrayButton>+/-</GrayButton>
-          <GrayButton>%</GrayButton>
-          <OrangeButton>/</OrangeButton>
+          <GrayButton onPress={handleInput.bind(null, '+')}>+/-</GrayButton>
+          <GrayButton onPress={handleInput.bind(null, '%')}>%</GrayButton>
+          <OrangeButton onPress={handleInput.bind(null, '/')}>/</OrangeButton>
         </Row>
         <Row>
-          <Button onPress={addInput.bind(null, 7)}>7</Button>
-          <Button onPress={addInput.bind(null, 8)}>8</Button>
-          <Button onPress={addInput.bind(null, 9)}>9</Button>
-          <OrangeButton>X</OrangeButton>
+          <Button onPress={handleInput.bind(null, 7)}>7</Button>
+          <Button onPress={handleInput.bind(null, 8)}>8</Button>
+          <Button onPress={handleInput.bind(null, 9)}>9</Button>
+          <OrangeButton onPress={handleInput.bind(null, '*')}>X</OrangeButton>
         </Row>
         <Row>
-          <Button onPress={addInput.bind(null, 4)}>4</Button>
-          <Button onPress={addInput.bind(null, 5)}>5</Button>
-          <Button onPress={addInput.bind(null, 6)}>6</Button>
-          <OrangeButton>-</OrangeButton>
+          <Button onPress={handleInput.bind(null, 4)}>4</Button>
+          <Button onPress={handleInput.bind(null, 5)}>5</Button>
+          <Button onPress={handleInput.bind(null, 6)}>6</Button>
+          <OrangeButton onPress={handleInput.bind(null, '-')}>-</OrangeButton>
         </Row>
         <Row>
-          <Button onPress={addInput.bind(null, 1)}>1</Button>
-          <Button onPress={addInput.bind(null, 2)}>2</Button>
-          <Button onPress={addInput.bind(null, 3)}>3</Button>
-          <OrangeButton>+</OrangeButton>
+          <Button onPress={handleInput.bind(null, 1)}>1</Button>
+          <Button onPress={handleInput.bind(null, 2)}>2</Button>
+          <Button onPress={handleInput.bind(null, 3)}>3</Button>
+          <OrangeButton onPress={handleInput.bind(null, '+')}>+</OrangeButton>
         </Row>
         <Row>
-          <Button onPress={addInput.bind(null, 0)}>0</Button>
+          <Button onPress={handleInput.bind(null, 0)}>0</Button>
           <Button>{''}</Button>
-          <Button>.</Button>
-          <OrangeButton>=</OrangeButton>
+          <Button onPress={handleInput.bind(null, '.')}>.</Button>
+          <OrangeButton onPress={handleInput.bind(null, '=')}>=</OrangeButton>
         </Row>
       </View>
     )
@@ -50,7 +50,7 @@ export default class KeyPad extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2
+    flex: 3
   }
 })
 

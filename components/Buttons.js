@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Dimensions,
   TouchableHighlight
 } from 'react-native'
 import * as config from './config'
@@ -17,7 +16,11 @@ class BaseButton extends React.Component {
     }
     return (
       <View style={[styles.container, containerStyle]}>
-        <TouchableHighlight style={styles.button} onPress={onPress}>
+        <TouchableHighlight
+          underlayColor="transparent"
+          style={styles.button} 
+          onPress={onPress}
+        >
           <Text style={[styles.buttonText]}>
             {this.props.children}
           </Text>
