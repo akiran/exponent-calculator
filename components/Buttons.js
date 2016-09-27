@@ -2,29 +2,33 @@ import React from 'react'
 import {
   StyleSheet,
   View,
-  Text
+  Text,
+  Dimensions,
+  TouchableHighlight
 } from 'react-native'
 import * as config from './config'
 
 
 class BaseButton extends React.Component {
   render() {
-    const {backgroundColor} = this.props
+    const {backgroundColor, onPress} = this.props
     const containerStyle = {
       backgroundColor
     }
     return (
       <View style={[styles.container, containerStyle]}>
-        <Text style={[styles.text]}>
-          {this.props.children}
-        </Text>
+        <TouchableHighlight style={styles.button} onPress={onPress}>
+          <Text style={[styles.buttonText]}>
+            {this.props.children}
+          </Text>
+        </TouchableHighlight>
       </View>
     )
   }
 }
 
 BaseButton.defaultProps = {
-  backgroundColor: '#FFF',
+  backgroundColor: '#FFF'
 }
 
 export function Button(props) {
@@ -42,13 +46,16 @@ export function GrayButton(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderLeftWidth: 1,
     borderTopWidth: 1,
+    borderLeftWidth: 1,
     borderColor: '#000'
   },
-  text: {
+  button: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonText: {
     fontSize: 24
   }
 })
