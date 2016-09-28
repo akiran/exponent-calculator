@@ -5,6 +5,7 @@ import {
   Text,
   TouchableHighlight
 } from 'react-native'
+import Color from 'color'
 import * as config from './config'
 
 
@@ -14,10 +15,11 @@ class BaseButton extends React.Component {
     const containerStyle = {
       backgroundColor
     }
+    const underlayColor = Color(backgroundColor).darken(0.1).rgbString()
     return (
       <View style={[styles.container, containerStyle]}>
         <TouchableHighlight
-          underlayColor="transparent"
+          underlayColor={underlayColor}
           style={styles.button} 
           onPress={onPress}
         >
