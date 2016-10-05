@@ -14,7 +14,7 @@ export default class KeyPad extends React.Component {
       <View style={styles.container}>
         <Row>
           <GrayButton onPress={clear}>{dirty ? 'C': 'AC'}</GrayButton>
-          <GrayButton onPress={handleInput.bind(null, '+')}>+/-</GrayButton>
+          <GrayButton onPress={handleInput.bind(null, '+-')}>+/-</GrayButton>
           <GrayButton onPress={handleInput.bind(null, '%')}>%</GrayButton>
           <OrangeButton onPress={handleInput.bind(null, '/')}>/</OrangeButton>
         </Row>

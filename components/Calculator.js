@@ -26,12 +26,18 @@ export default class Calculator extends React.Component {
     })
   }
   handleOperand(key) {
-    let {prevInput, input, operator} = this.state
-    this.setState({
-      operator: key,
-      prevInput: input,
-      action: 'operand'
-    })
+    let {input} = this.state
+    if (key === '+-') {
+      this.setState({
+        input: -1*input
+      })
+    } else {
+      this.setState({
+        operator: key,
+        prevInput: input,
+        action: 'operand'
+      })
+    }
   }
   calculateResult() {
     let {prevInput, input, operator, action} = this.state
