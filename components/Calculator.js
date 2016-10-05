@@ -41,7 +41,7 @@ export default class Calculator extends React.Component {
     
     this.setState({
       prevInput: action === 'result' ? prevInput : input,
-      input: eval(`${prevInput} ${operator} ${input}`),
+      input: action === 'result' ?  eval(`${input} ${operator} ${prevInput}`): eval(`${prevInput} ${operator} ${input}`),
       action: 'result'
     })
   }
